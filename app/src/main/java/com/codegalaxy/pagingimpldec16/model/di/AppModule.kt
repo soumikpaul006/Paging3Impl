@@ -1,5 +1,6 @@
 package com.codegalaxy.pagingimpldec16.model.di
 
+import com.codegalaxy.pagingimpldec16.BuildConfig
 import com.codegalaxy.pagingimpldec16.model.network.ApiService
 import com.codegalaxy.pagingimpldec16.model.repository.IProductRepository
 import com.codegalaxy.pagingimpldec16.model.repository.ProductRepository
@@ -33,7 +34,7 @@ object AppModule {
             .addInterceptor(loggingInterceptor)
             .addInterceptor { chain ->
                 val request = chain.request().newBuilder()
-                    .addHeader("x-api-key", "BRDgjGmQf3aSM95OXXNyD5YSeZAsW1ac9N89zo1J")
+                    .addHeader("x-api-key", BuildConfig.API_KEY)
                     .build()
                 chain.proceed(request)
             }

@@ -20,5 +20,3 @@ class ProductViewModel @Inject constructor(
     val products: Flow<PagingData<Product>> = repository.getProductsFlow()
         .cachedIn(viewModelScope)
 }
-
-

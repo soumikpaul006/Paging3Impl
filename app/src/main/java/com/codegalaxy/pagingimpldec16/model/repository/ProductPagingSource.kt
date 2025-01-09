@@ -19,15 +19,18 @@ class ProductPagingSource(
                 pageNumber = currentPage,
                 pageSize = params.loadSize
             )
+
             val response = apiService.getProducts(requestBody)
 //            Log.d("ProductPagingSource", "Response: ${response.data.PRODUCT_LIST}")
 
             val data = response.data.PRODUCT_LIST
+
             LoadResult.Page(
                 data = data,
                 prevKey = if (currentPage == 1) null else currentPage - 1,
                 nextKey = if (currentPage < response.data.TOTAL_PAGES) currentPage + 1 else null
             )
+
         } catch (e: Exception) {
 //            Log.e("ProductPagingSource", "Error: ${e.message}", e)
             LoadResult.Error(e)
@@ -41,4 +44,5 @@ class ProductPagingSource(
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
     }
+
 }
